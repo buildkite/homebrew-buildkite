@@ -32,10 +32,14 @@ class BuildkiteAgent < Formula
   def install
     raise "You must specify your agent token using --token, for example:\n  brew install buildkite-agent --token=xxxx" if agent_token.empty?
 
+    bin.mkpath
+    agent_etc_path.mkpath
+    agent_builds_path.mkpath
+
     bin.install "buildkite-agent"
 
     if (agent_etc_path/"bootstrap.sh").exist?
-      system "cp", "bootstrap.sh", agent_etc_path/"bootstrap.sh.default"
+      cp "bootstrap.sh", agent_etc_path/"bootstrap.sh.default"
       $stderr.puts <<-EOS.undent
 
         An existing bootstrap.sh was found. To override with the latest version run:
@@ -44,11 +48,8 @@ class BuildkiteAgent < Formula
 
       EOS
     else
-      agent_etc_path.mkpath
-      system "cp", "bootstrap.sh", agent_etc_path/"bootstrap.sh"
+      cp "bootstrap.sh", agent_etc_path/"bootstrap.sh"
     end
-
-    agent_builds_path.mkpath
   end
 
   def plist

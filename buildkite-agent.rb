@@ -9,7 +9,7 @@ class BuildkiteAgent < Formula
   option 'token=', "Your account's agent token"
 
   def agent_token
-    ARGV.value("token") || `defaults read com.buildkite.agent token 2> /dev/null`
+    ARGV.value("token") || `defaults read com.buildkite.agent token 2> /dev/null`.strip
   end
 
   def agent_etc_path
@@ -21,7 +21,7 @@ class BuildkiteAgent < Formula
   end
 
   def install
-    raise "No agent token specified. Set the token in your user defaults first (defaults write com.buildkite.agent token xxxx) or pass it into homebrew using --token:\n  brew install buildkite-agent --token xxxx" if agent_token.empty?
+    raise "No agent token specified. Set the token in your user defaults first (defaults write com.buildkite.agent token xxxx) or pass it into homebrew using --token:\n  brew install buildkite-agent --token=xxxx" if agent_token.empty?
 
     bin.install "buildkite-agent"
 
@@ -42,7 +42,7 @@ class BuildkiteAgent < Formula
 
   def plist;
     # A little hacky, but we can't use #agent_token in the plist_options :manual string
-    self.class.instance_variable_set(:@plist_manual, "BUILDKITE_BUILD_PATH=#{agent_builds_path} buildkite-agent start --token #{agent_token} --bootstrap #{agent_etc_path/"bootstrap.sh"}")
+    self.class.instance_variable_set(:@plist_manual, "BUILDKITE_BUILD_PATH=#{agent_builds_path} \\\n      buildkite-agent start \\\n        --token #{agent_token} \\\n        --bootstrap #{agent_etc_path/"bootstrap.sh"} \\\n        --meta-data mac=true")
 
     <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>
@@ -57,7 +57,7 @@ class BuildkiteAgent < Formula
       <array>
         <string>#{opt_bin}/buildkite-agent</string>
         <string>start</string>
-        <string>--debug</string>
+        <!--<string>--debug</string>-->
       </array>
       <key>RunAtLoad</key>
       <true/>
@@ -84,6 +84,20 @@ class BuildkiteAgent < Formula
       </dict>
     </dict>
     </plist>
+    EOS
+  end
+
+  def caveats
+    <<-EOS.undent
+      buildkite-agent is now installed!
+
+      To tail the logs:
+          tail -f #{var}/log/buildkite-agent.*
+
+      If you want the agent to start on boot, install the launch agent as below and set your
+      machine to auto-login as your current user (#{ENV['USER']}). We also recommend
+      installing Caffeine (http://lightheadsw.com/caffeine/) to prevent your machine from
+      going to sleep and logging out.
     EOS
   end
 

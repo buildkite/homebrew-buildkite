@@ -2,9 +2,18 @@ require 'formula'
 
 class BuildkiteAgent < Formula
   homepage 'https://buildkite.com/docs/agent'
-  url      'https://github.com/buildkite/agent/releases/download/v1.0-beta.7/buildkite-agent-darwin-386.tar.gz'
-  version  '1.0.beta.7'
-  sha1     '5d6851a3566d9c5d839ca77ffa70b65bf77a033c'
+
+  stable do
+    # version  '1.0.0'
+    # url      'https://github.com/buildkite/agent/releases/download/v1.0.0/buildkite-agent-darwin-386.tar.gz'
+    # sha1     'abc123'
+  end
+
+  devel do
+    version  '1.0.beta.8'
+    url      'https://github.com/buildkite/agent/releases/download/v1.0-beta.8/buildkite-agent-darwin-386.tar.gz'
+    sha1     '66624f38c17e1d09f81232567fa43fe8a722275d'
+  end
 
   option 'token=', "Your account's agent token"
 
@@ -25,12 +34,15 @@ class BuildkiteAgent < Formula
 
     bin.install "buildkite-agent"
 
-    # This should be shipped with the release binary
-    system "curl", "-O", "https://raw.githubusercontent.com/buildkite/agent/master/templates/bootstrap.sh"
-    system "chmod", "u+x", "bootstrap.sh"
-
     if (agent_etc_path/"bootstrap.sh").exist?
       system "cp", "bootstrap.sh", agent_etc_path/"bootstrap.sh.default"
+      $stderr.puts <<-EOS.undent
+
+        An existing bootstrap.sh was found. To override with the latest version run:
+
+          cp #{agent_etc_path/"bootstrap.sh.default"} #{agent_etc_path/"bootstrap.sh"}
+
+      EOS
     else
       agent_etc_path.mkpath
       system "cp", "bootstrap.sh", agent_etc_path/"bootstrap.sh"
@@ -40,8 +52,12 @@ class BuildkiteAgent < Formula
   end
 
   def plist
-    # A little hacky, but we can't use #agent_token in the plist_options :manual string
-    self.class.instance_variable_set(:@plist_manual, "BUILDKITE_BUILD_PATH=#{agent_builds_path} \\\n      buildkite-agent start \\\n        --token #{agent_token} \\\n        --bootstrap-script #{agent_etc_path/"bootstrap.sh"} \\\n        --meta-data mac=true")
+    # Hacky, but we can't use #agent_token in: plist_options(:manual => "string")
+    self.class.instance_variable_set :@plist_manual, ["buildkite-agent start",
+                                                      "--bootstrap-script #{agent_etc_path/"bootstrap.sh"}",
+                                                      "--build-path #{agent_builds_path}",
+                                                      "--token #{agent_token}",
+                                                      "--meta-data mac=true"].join(" \\\n      ")
 
     <<-EOS.undent
       <?xml version="1.0" encoding="UTF-8"?>
@@ -93,10 +109,10 @@ class BuildkiteAgent < Formula
       To tail the logs:
           tail -f #{var}/log/buildkite-agent.*
 
-      If you want the agent to start on boot, install the launch agent as below and set your
-      machine to auto-login as your current user (#{ENV['USER']}). We also recommend
-      installing Caffeine (http://lightheadsw.com/caffeine/) to prevent your machine from
-      going to sleep and logging out.
+      If you want the agent to start on boot install the launch agent as below and set your
+      machine to auto-login as your current user (#{ENV['USER']}). It's also recommended
+      to install Caffeine (http://lightheadsw.com/caffeine/) to prevent your machine from
+      going to sleep or logging out.
     EOS
   end
 

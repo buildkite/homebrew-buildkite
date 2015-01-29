@@ -42,7 +42,7 @@ class BuildkiteAgent < Formula
 
   def plist;
     # A little hacky, but we can't use #agent_token in the plist_options :manual string
-    self.class.instance_variable_set(:@plist_manual, "BUILDKITE_BUILD_PATH=#{agent_builds_path} \\\n      buildkite-agent start \\\n        --token #{agent_token} \\\n        --bootstrap #{agent_etc_path/"bootstrap.sh"} \\\n        --meta-data mac=true")
+    self.class.instance_variable_set(:@plist_manual, "BUILDKITE_BUILD_PATH=#{agent_builds_path} \\\n      buildkite-agent start \\\n        --token #{agent_token} \\\n        --bootstrap-script #{agent_etc_path/"bootstrap.sh"} \\\n        --meta-data mac=true")
 
     <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>

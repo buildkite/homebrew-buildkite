@@ -29,7 +29,6 @@ class BuildkiteAgent < Formula
     system "curl", "-O", "https://raw.githubusercontent.com/buildkite/agent/master/templates/bootstrap.sh"
     system "chmod", "u+x", "bootstrap.sh"
 
-
     if (agent_etc_path/"bootstrap.sh").exist?
       system "cp", "bootstrap.sh", agent_etc_path/"bootstrap.sh.default"
     else
@@ -40,50 +39,50 @@ class BuildkiteAgent < Formula
     agent_builds_path.mkpath
   end
 
-  def plist;
+  def plist
     # A little hacky, but we can't use #agent_token in the plist_options :manual string
     self.class.instance_variable_set(:@plist_manual, "BUILDKITE_BUILD_PATH=#{agent_builds_path} \\\n      buildkite-agent start \\\n        --token #{agent_token} \\\n        --bootstrap-script #{agent_etc_path/"bootstrap.sh"} \\\n        --meta-data mac=true")
 
     <<-EOS.undent
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>Label</key>
-      <string>#{plist_name}</string>
-      <key>WorkingDirectory</key>
-      <string>#{HOMEBREW_PREFIX}</string>
-      <key>ProgramArguments</key>
-      <array>
-        <string>#{opt_bin}/buildkite-agent</string>
-        <string>start</string>
-        <!--<string>--debug</string>-->
-      </array>
-      <key>RunAtLoad</key>
-      <true/>
-      <key>KeepAlive</key>
-      <true/>
-      <key>ProcessType</key>
-      <string>Interactive</string>
-      <key>ThrottleInterval</key>
-      <integer>30</integer>
-      <key>StandardOutPath</key>
-      <string>#{var}/log/buildkite-agent.log</string>
-      <key>StandardErrorPath</key>
-      <string>#{var}/log/buildkite-agent.error.log</string>
-      <key>EnvironmentVariables</key>
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
       <dict>
-        <key>BUILDKITE_AGENT_TOKEN</key>
-        <string>#{agent_token}</string>
-        <key>BUILDKITE_AGENT_META_DATA</key>
-        <string>mac=true</string>
-        <key>BUILDKITE_BOOTSTRAP_SCRIPT_PATH</key>
-        <string>#{agent_etc_path/"bootstrap.sh"}</string>
-        <key>BUILDKITE_BUILD_PATH</key>
-        <string>#{agent_builds_path}</string>
+        <key>Label</key>
+        <string>#{plist_name}</string>
+        <key>WorkingDirectory</key>
+        <string>#{HOMEBREW_PREFIX}</string>
+        <key>ProgramArguments</key>
+        <array>
+          <string>#{opt_bin}/buildkite-agent</string>
+          <string>start</string>
+          <!--<string>--debug</string>-->
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>KeepAlive</key>
+        <true/>
+        <key>ProcessType</key>
+        <string>Interactive</string>
+        <key>ThrottleInterval</key>
+        <integer>30</integer>
+        <key>StandardOutPath</key>
+        <string>#{var}/log/buildkite-agent.log</string>
+        <key>StandardErrorPath</key>
+        <string>#{var}/log/buildkite-agent.error.log</string>
+        <key>EnvironmentVariables</key>
+        <dict>
+          <key>BUILDKITE_AGENT_TOKEN</key>
+          <string>#{agent_token}</string>
+          <key>BUILDKITE_AGENT_META_DATA</key>
+          <string>mac=true</string>
+          <key>BUILDKITE_BOOTSTRAP_SCRIPT_PATH</key>
+          <string>#{agent_etc_path/"bootstrap.sh"}</string>
+          <key>BUILDKITE_BUILD_PATH</key>
+          <string>#{agent_builds_path}</string>
+        </dict>
       </dict>
-    </dict>
-    </plist>
+      </plist>
     EOS
   end
 

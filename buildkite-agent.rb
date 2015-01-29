@@ -10,9 +10,9 @@ class BuildkiteAgent < Formula
   end
 
   devel do
-    version  '1.0.beta.8'
-    url      'https://github.com/buildkite/agent/releases/download/v1.0-beta.8/buildkite-agent-darwin-386.tar.gz'
-    sha1     '66624f38c17e1d09f81232567fa43fe8a722275d'
+    version File.read(File.expand_path("../DEVEL_VERSION", __FILE__))
+    url     File.read(File.expand_path("../DEVEL_URL", __FILE__))
+    sha1    File.read(File.expand_path("../DEVEL_SHA", __FILE__))
   end
 
   option 'token=', "Your account's agent token"

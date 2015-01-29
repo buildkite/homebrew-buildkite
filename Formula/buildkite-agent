@@ -11,9 +11,10 @@ class BuildkiteAgent < Formula
     ENV['GOPATH'] = buildpath
     system 'go', 'build', 'agent.go', '-o', 'buildkite-agent'
     bin.install 'buildkite-agent'
+    etc.install 'buildkite-agent.conf'
   end
 
-  plist_options :manual => 'buildkite-agent'
+  plist_options :manual => 'buildkite-agent start --token XXXX'
 
   def plist; <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>
@@ -38,17 +39,14 @@ class BuildkiteAgent < Formula
       <string>Interactive</string>
       <key>ThrottleInterval</key>
       <integer>30</integer>
-      <key>EnvironmentVariables</key>
-      <dict>
-        <key>LANG</key>
-        <string>en_US.UTF-8</string>
-        <key>BUILDKITE_AGENT_TOKEN</key>
-        <string>XXXX</string>
-        <key>BUIDLKITE_AGENT_META_DATA</key>
-        <string>osx=true</string>
-      </dict>
     </dict>
     </plist>
+    EOS
+  end
+
+  def caveats; <<-EOS.undent
+    To configure buildkite-agent, and set your agent token, edit:
+      #{etc}/buildkite-agent.conf
     EOS
   end
 end

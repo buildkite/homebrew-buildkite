@@ -10,9 +10,11 @@ class BuildkiteAgent < Formula
   end
 
   devel do
-    version File.read(File.expand_path("../DEVEL_VERSION", __FILE__))
-    url     File.read(File.expand_path("../DEVEL_URL", __FILE__))
-    sha1    File.read(File.expand_path("../DEVEL_SHA", __FILE__))
+    devel_parts = File.read(File.expand_path("../DEVEL", __FILE__)).split("\n")
+
+    version devel_parts[0]
+    url     devel_parts[1]
+    sha1    devel_parts[2]
   end
 
   option 'token=', "Your account's agent token"

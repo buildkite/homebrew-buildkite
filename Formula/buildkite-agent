@@ -1,0 +1,54 @@
+require 'formula'
+
+class BuildkiteAgent < Formula
+  homepage 'https://buildkite.com/docs/agent'
+  url 'https://github.com/buildkite/agent/archive/v1.0-beta.7.tar.gz'
+  sha1 '67c9b4c16afb84d191824d1e3de0c92f0b27c20f'
+
+  depends_on 'go' => :build
+
+  def install
+    ENV['GOPATH'] = buildpath
+    system 'go', 'build', 'agent.go', '-o', 'buildkite-agent'
+    bin.install 'buildkite-agent'
+  end
+
+  plist_options :manual => 'buildkite-agent'
+
+  def plist; <<-EOS.undent
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+      <key>Label</key>
+      <string>#{plist_name}</string>
+      <key>WorkingDirectory</key>
+      <string>#{HOMEBREW_PREFIX}</string>
+      <key>ProgramArguments</key>
+      <array>
+        <string>#{opt_bin}/buildkite-agent</string>
+        <string>start</string>
+        <string>--debug</string>
+      </array>
+      <key>RunAtLoad</key>
+      <true/>
+      <key>KeepAlive</key>
+      <true/>
+      <key>ProcessType</key>
+      <string>Interactive</string>
+      <key>ThrottleInterval</key>
+      <integer>30</integer>
+      <key>EnvironmentVariables</key>
+      <dict>
+        <key>LANG</key>
+        <string>en_US.UTF-8</string>
+        <key>BUILDKITE_AGENT_TOKEN</key>
+        <string>XXXX</string>
+        <key>BUIDLKITE_AGENT_META_DATA</key>
+        <string>osx=true</string>
+      </dict>
+    </dict>
+    </plist>
+    EOS
+  end
+end

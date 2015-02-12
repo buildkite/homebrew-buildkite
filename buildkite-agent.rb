@@ -3,18 +3,18 @@ require 'formula'
 class BuildkiteAgent < Formula
   homepage 'https://buildkite.com/docs/agent'
 
-  stable do
-    # version  '1.0.0'
-    # url      'https://github.com/buildkite/agent/releases/download/v1.0.0/buildkite-agent-darwin-386.tar.gz'
-    # sha1     'abc123'
-  end
+  # No stable release of the new agents yet
+  #
+  # stable do
+  #   version ""
+  #   url     ""
+  #   sha1    ""
+  # end
 
   devel do
-    devel_parts = File.read(File.expand_path("../DEVEL", __FILE__)).split("\n")
-
-    version devel_parts[0]
-    url     devel_parts[1]
-    sha1    devel_parts[2]
+    version "1.0.beta.8"
+    url     "https://github.com/buildkite/agent/releases/download/v1.0-beta.8/buildkite-agent-darwin-386.tar.gz"
+    sha1    "66624f38c17e1d09f81232567fa43fe8a722275d"
   end
 
   option 'token=', "Your account's agent token"

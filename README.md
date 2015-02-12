@@ -18,7 +18,7 @@ To install [buildkite-agent](https://github.com/buildkite/agent):
 brew install buildkite-agent --devel --token='your-agent-token-here'
 ```
 
-You can find your agent token from on your "Agents" page in Buildkite.
+You can find your agent token on your "Agents" page in Buildkite.
 
 If you want it start on login follow the `brew install` instructions to install the LaunchAgent plist. You’ll also want to make sure your PC is set to automatically login (the agent won’t launch until you've logged in) and you’ve prevented your machine from going to sleep.
 

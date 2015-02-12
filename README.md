@@ -8,7 +8,7 @@ To use the formulae, tap this repository into your home brew:
 brew tap buildkite/buildkite
 ```
 
-This repository will have been cloned into your Homebrew’s `Libray/Taps` directory (usualy `/opt/local/Library/Taps`). And whenever you do a `brew update`, Homebrew will also update the tap (using `git pull`) to have the latest versions of the formulae.
+This repository will have been cloned into your Homebrew’s `Libray/Taps` directory (most commonly `/opt/local/Library/Taps`), and whenever you do a `brew update` Homebrew will also update this tap (using `git pull`) and you’ll have the latest versions of the formulae.
 
 ## buildkite-agent
 

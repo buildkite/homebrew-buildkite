@@ -12,53 +12,55 @@ class BuildkiteAgent < Formula
   # end
 
   devel do
-    version "1.0.beta.10"
-    url     "https://github.com/buildkite/agent/releases/download/v1.0-beta.10/buildkite-agent-darwin-386.tar.gz"
-    sha1    "135883c68da1f119e26cf6e3b0fa9c6f91add8e6"
+    version "1.0.beta.12"
+    url     "https://github.com/buildkite/agent/releases/download/v1.0-beta.12/buildkite-agent-darwin-386.tar.gz"
+    sha1    "11f36a3e4b783e65d8c43f3ce78cd70f984010c4"
   end
 
   option 'token=', "Your account's agent token"
+  option 'builds-path=', "Directory where builds are created (defaults to #{HOMEBREW_PREFIX}/var/buildkite-agent/builds)"
+  option 'hooks-path=', "Directory where hooks are located (defaults to #{HOMEBREW_PREFIX}/share/buildkite-agent/hooks)"
 
   def agent_token
     ARGV.value("token") || ""
   end
 
-  def agent_etc_path
-    etc/"buildkite-agent"
+  def agent_hooks_path
+    Pathname(ARGV.value("hooks-path") || etc/"buildkite-agent/hooks")
+  end
+
+  def agent_share_path
+    share/"buildkite-agent"
   end
 
   def agent_builds_path
-    var/"buildkite-agent/builds"
+    Pathname(ARGV.value("builds-path") || var/"buildkite-agent/builds")
+  end
+
+  def agent_bootstrap_path
+    agent_share_path/"bootstrap.sh"
   end
 
   def install
     raise "You must specify your agent token using --token, for example:\n  brew install buildkite-agent --token=xxxx" if agent_token.empty?
 
     bin.mkpath
-    agent_etc_path.mkpath
+    agent_hooks_path.mkpath
     agent_builds_path.mkpath
+    agent_share_path.mkpath
+
+    agent_hooks_path.install Dir["hooks/*"]
+    agent_share_path.install "bootstrap.sh"
 
     bin.install "buildkite-agent"
-
-    if (agent_etc_path/"bootstrap.sh").exist?
-      cp "bootstrap.sh", agent_etc_path/"bootstrap.sh.default"
-      $stderr.puts <<-EOS.undent
-
-        An existing bootstrap.sh was found. To override with the latest version run:
-
-          cp #{agent_etc_path/"bootstrap.sh.default"} #{agent_etc_path/"bootstrap.sh"}
-
-      EOS
-    else
-      cp "bootstrap.sh", agent_etc_path/"bootstrap.sh"
-    end
   end
 
   def plist
     # Hacky, but we can't use #agent_token in: plist_options(:manual => "string")
     self.class.instance_variable_set :@plist_manual, ["buildkite-agent start",
-                                                      "--bootstrap-script #{agent_etc_path/"bootstrap.sh"}",
+                                                      "--bootstrap-script #{HOMEBREW_PREFIX}/share/buildkite-agent/bootstrap.sh",
                                                       "--build-path #{agent_builds_path}",
+                                                      "--hooks-path #{agent_hooks_path}",
                                                       "--token #{agent_token}",
                                                       "--meta-data mac=true"].join(" \\\n      ")
 
@@ -96,9 +98,11 @@ class BuildkiteAgent < Formula
           <key>BUILDKITE_AGENT_META_DATA</key>
           <string>mac=true</string>
           <key>BUILDKITE_BOOTSTRAP_SCRIPT_PATH</key>
-          <string>#{agent_etc_path/"bootstrap.sh"}</string>
+          <string>#{agent_bootstrap_path}</string>
           <key>BUILDKITE_BUILD_PATH</key>
           <string>#{agent_builds_path}</string>
+          <key>BUILDKITE_HOOKS_PATH</key>
+          <string>#{agent_hooks_path}</string>
         </dict>
       </dict>
       </plist>
@@ -109,13 +113,20 @@ class BuildkiteAgent < Formula
     <<-EOS.undent
       buildkite-agent is now installed!
 
-      To tail the logs:
-          tail -f #{var}/log/buildkite-agent.*
+      Logs can be found here:
+          #{var}/log/buildkite-agent.log
+          #{var}/log/buildkite-agent.error.log
 
-      If you want the agent to start on boot install the launch agent as below and set your
-      machine to auto-login as your current user (#{ENV['USER']}). It's also recommended
-      to install Caffeine (http://lightheadsw.com/caffeine/) to prevent your machine from
-      going to sleep or logging out.
+      Your builds directory is:
+          #{agent_builds_path}
+
+      Your hook directory is:
+          #{agent_hooks_path}
+
+      Don't forget to set your machine to auto-login as your current user
+      (#{ENV['USER']}) if you set up the agent plist as below. It's also
+      recommended to install Caffeine (http://lightheadsw.com/caffeine/) to
+      prevent your machine from going to sleep or logging out.
     EOS
   end
 

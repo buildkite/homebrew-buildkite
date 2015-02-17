@@ -55,15 +55,16 @@ class BuildkiteAgent < Formula
     bin.install "buildkite-agent"
   end
 
-  def plist
-    # Hacky, but we can't use #agent_token in: plist_options(:manual => "string")
-    self.class.instance_variable_set :@plist_manual, ["buildkite-agent start",
-                                                      "--bootstrap-script #{HOMEBREW_PREFIX}/share/buildkite-agent/bootstrap.sh",
-                                                      "--build-path #{agent_builds_path}",
-                                                      "--hooks-path #{agent_hooks_path}",
-                                                      "--token #{agent_token}",
-                                                      "--meta-data mac=true"].join(" \\\n      ")
+  def plist_manual
+    ["buildkite-agent start",
+     "--bootstrap-script #{HOMEBREW_PREFIX}/share/buildkite-agent/bootstrap.sh",
+     "--build-path #{agent_builds_path}",
+     "--hooks-path #{agent_hooks_path}",
+     "--token #{agent_token}",
+     "--meta-data mac=true"].join(" \\\n      ")
+  end
 
+  def plist
     <<-EOS.undent
       <?xml version="1.0" encoding="UTF-8"?>
       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -113,20 +114,20 @@ class BuildkiteAgent < Formula
     <<-EOS.undent
       buildkite-agent is now installed!
 
-      Logs can be found here:
+      Log paths:
           #{var}/log/buildkite-agent.log
           #{var}/log/buildkite-agent.error.log
 
-      Your builds directory is:
+      Build directory:
           #{agent_builds_path}
 
-      Your hook directory is:
+      Hooks directory:
           #{agent_hooks_path}
 
-      Don't forget to set your machine to auto-login as your current user
-      (#{ENV['USER']}) if you set up the agent plist as below. It's also
-      recommended to install Caffeine (http://lightheadsw.com/caffeine/) to
-      prevent your machine from going to sleep or logging out.
+      If you set up the LaunchAgent below, set your machine to auto-login as
+      your current user. It's also recommended to install Caffeine
+      (http://lightheadsw.com/caffeine/) to prevent your machine from going to
+      sleep or logging out.
     EOS
   end
 

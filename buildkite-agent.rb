@@ -12,8 +12,8 @@ class BuildkiteAgent < Formula
   # end
 
   devel do
-    version "1.0-beta.13"
-    url     "https://github.com/buildkite/agent/releases/download/v1.0-beta.13/buildkite-agent-darwin-386.tar.gz"
+    version "1.0-beta.12"
+    url     "https://github.com/buildkite/agent/releases/download/v1.0-beta.12/buildkite-agent-darwin-386.tar.gz"
     sha1    "11f36a3e4b783e65d8c43f3ce78cd70f984010c4"
   end
 

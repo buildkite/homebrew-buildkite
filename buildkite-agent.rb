@@ -14,7 +14,7 @@ class BuildkiteAgent < Formula
   devel do
     version "1.0-beta.18"
     url     "https://github.com/buildkite/agent/releases/download/v1.0-beta.18/buildkite-agent-darwin-386.tar.gz"
-    sha1    "991b1dac86e1f2e290fc56d13f98dafd00573b22"
+    sha1    "5c87c52bace6e410da479bbc07ee26740e1e1ee9"
   end
 
   option 'token=', "Your account's agent token"

@@ -6,9 +6,9 @@ class BuildkiteAgent < Formula
   # No stable release of the new agents yet
   #
   # stable do
-  #   version "2.0.1"
-  #   url     "https://github.com/buildkite/agent/releases/download/v2.0.1/buildkite-agent-darwin-386-2.0.1.tar.gz"
-  #   sha1    "100f2db6635726e7799f4e38777fec6927af9e44"
+  #   version "2.0.3"
+  #   url     "https://github.com/buildkite/agent/releases/download/v2.0.3/buildkite-agent-darwin-386-2.0.3.tar.gz"
+  #   sha1    "f48615fb1875560f1acd1485f5da22ab1d8b6673"
   # end
 
   devel do

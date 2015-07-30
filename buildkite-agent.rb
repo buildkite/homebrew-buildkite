@@ -3,13 +3,11 @@ require 'formula'
 class BuildkiteAgent < Formula
   homepage 'https://buildkite.com/docs/agent'
 
-  # No stable release of the new agents yet
-  #
-  # stable do
-  #   version "2.0.4"
-  #   url     "https://github.com/buildkite/agent/releases/download/v2.0.4/buildkite-agent-darwin-386-2.0.4.tar.gz"
-  #   sha1    "9c1bbf0a340c7a9cba60649f8c71db53abbaa5d8"
-  # end
+  stable do
+    version "2.0.4"
+    url     "https://github.com/buildkite/agent/releases/download/v2.0.4/buildkite-agent-darwin-386-2.0.4.tar.gz"
+    sha1    "9c1bbf0a340c7a9cba60649f8c71db53abbaa5d8"
+  end
 
   devel do
     version "1.0-beta.41"

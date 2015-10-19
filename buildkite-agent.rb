@@ -24,34 +24,50 @@ class BuildkiteAgent < Formula
   def agent_token
     ARGV.value("token") || default_agent_token
   end
+  
+  def agent_etc
+    etc/"buildkite-agent"
+  end
+  
+  def agent_share
+    share/"buildkite-agent"
+  end
+  
+  def agent_var
+    var/"buildkite-agent"
+  end
 
   def agent_hooks_path
-    etc/"buildkite-agent/hooks"
+    agent_etc/"hooks"
   end
 
   def agent_builds_path
-    var/"buildkite-agent/builds"
+    agent_var/"builds"
   end
 
   def agent_bootstrap_path
-    etc/"bootstrap.sh"
+    agent_etc/"bootstrap.sh"
   end
 
   def agent_config_path
-    etc/"buildkite-agent/buildkite-agent.cfg"
+    agent_etc/"buildkite-agent.cfg"
   end
 
   def agent_config_dist_path
-    share/"buildkite-agent.dist.cfg"
+    agent_share/"buildkite-agent.dist.cfg"
   end
 
   def install
     bin.mkpath
+    
+    agent_etc.mkpath
+    agent_var.mkpath
+    agent_share.mkpath
     agent_hooks_path.mkpath
     agent_builds_path.mkpath
 
     agent_hooks_path.install Dir["hooks/*"]
-    etc.install "bootstrap.sh"
+    agent_etc.install "bootstrap.sh"
 
     agent_config_dist_path.write(default_config_file)
 

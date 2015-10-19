@@ -24,15 +24,15 @@ class BuildkiteAgent < Formula
   def agent_token
     ARGV.value("token") || default_agent_token
   end
-  
+
   def agent_etc
     etc/"buildkite-agent"
   end
-  
+
   def agent_share
     share/"buildkite-agent"
   end
-  
+
   def agent_var
     var/"buildkite-agent"
   end
@@ -59,7 +59,7 @@ class BuildkiteAgent < Formula
 
   def install
     bin.mkpath
-    
+
     agent_etc.mkpath
     agent_var.mkpath
     agent_share.mkpath
@@ -155,6 +155,10 @@ class BuildkiteAgent < Formula
       your current user. It's also recommended to install Caffeine
       (http://lightheadsw.com/caffeine/) to prevent your machine from going to
       sleep or logging out.
+
+      To run multiple agents simply run the buildkite-agent start command
+      multiple times, or duplicate the LaunchAgent plist to create another
+      that starts on login.
     EOS
   end
 

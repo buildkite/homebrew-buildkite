@@ -17,7 +17,7 @@ This repository will have been cloned into your Homebrew’s `Libray/Taps` direc
 To install [buildkite-agent](https://github.com/buildkite/agent):
 
 ```bash
-brew install --devel --token='your-agent-token-here' buildkite-agent
+brew install --token='your-agent-token-here' buildkite-agent
 ```
 
 You can find your agent token on your "Agents" page in Buildkite.

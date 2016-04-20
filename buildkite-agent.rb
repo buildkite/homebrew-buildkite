@@ -103,12 +103,14 @@ class BuildkiteAgent < Formula
         <string>#{plist_name}</string>
 
         <key>WorkingDirectory</key>
-        <string>#{HOMEBREW_PREFIX}</string>
+        <string>#{HOMEBREW_PREFIX}/bin</string>
 
         <key>ProgramArguments</key>
         <array>
-          <string>#{opt_bin}/buildkite-agent</string>
+          <string>#{HOMEBREW_PREFIX}/bin/buildkite-agent</string>
           <string>start</string>
+          <string>--config</string>
+          <string>#{agent_config_path}</string>
           <!--<string>--debug</string>-->
         </array>
 

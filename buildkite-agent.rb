@@ -1,7 +1,7 @@
-require 'formula'
+require "formula"
 
 class BuildkiteAgent < Formula
-  homepage 'https://buildkite.com/docs/agent'
+  homepage "https://buildkite.com/docs/agent"
 
   stable do
     version "2.1.13"
@@ -15,7 +15,7 @@ class BuildkiteAgent < Formula
     sha1    "f6a765528c32cbb7e909129990c2839ccda7f9c1"
   end
 
-  option 'token=', "Your account's agent token to add to the config on install"
+  option "token=", "Your account's agent token to add to the config on install"
 
   def default_agent_token
     "xxx"
@@ -83,7 +83,7 @@ class BuildkiteAgent < Formula
 
   def default_config_file(agent_token = default_agent_token)
     File.read("buildkite-agent.cfg").
-      gsub(/token=.+/,"token=\"#{agent_token}\"").
+      gsub(/token=.+/, "token=\"#{agent_token}\"").
       gsub(/bootstrap-script=.+/, "bootstrap-script=\"#{agent_bootstrap_path}\"").
       gsub(/build-path=.+/, "build-path=\"#{agent_builds_path}\"").
       gsub(/hooks-path=.+/, "hooks-path=\"#{agent_hooks_path}\"")

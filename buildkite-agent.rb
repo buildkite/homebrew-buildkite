@@ -48,7 +48,11 @@ class BuildkiteAgent < Formula
   end
 
   def agent_bootstrap_path
-    agent_etc/"bootstrap.sh"
+    if stable?
+      agent_etc/"bootstrap.sh"
+    else
+      opt_bin/"buildkite-agent bootstrap"
+    end
   end
 
   def agent_config_path
@@ -69,7 +73,9 @@ class BuildkiteAgent < Formula
     agent_builds_path.mkpath
 
     agent_hooks_path.install Dir["hooks/*"]
-    agent_etc.install "bootstrap.sh"
+    if stable?
+      agent_etc.install "bootstrap.sh"
+    end
 
     agent_config_dist_path.write(default_config_file)
 

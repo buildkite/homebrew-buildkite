@@ -14,7 +14,7 @@ class BuildkiteAgent < Formula
     version "3.0-beta.6"
     url     "https://github.com/buildkite/agent/releases/download/v3.0-beta.6/buildkite-agent-darwin-386-3.0-beta.6.tar.gz"
     sha1    "95e042e4e56b6da54846a514b1f2f28b991f648f"
-    sha256  "1f334822c9f8d6448503036dee90eb35ff0e5cbfe5d1febc2f9b5e82ef75e8bf"
+    sha256  "4c2b91a5254e3dca4579927fffd6b52082e5724535075a36a3e3e0ecbbc0cd3f"
   end
 
   option "token=", "Your account's agent token to add to the config on install"

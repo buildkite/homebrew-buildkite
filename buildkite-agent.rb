@@ -45,6 +45,10 @@ class BuildkiteAgent < Formula
     agent_var/"builds"
   end
 
+  def agent_plugins_path
+    agent_var/"plugins"
+  end
+
   def agent_bootstrap_path
     if stable?
       agent_etc/"bootstrap.sh"
@@ -93,6 +97,7 @@ class BuildkiteAgent < Formula
       gsub(/bootstrap-script=.+/, "bootstrap-script=\"#{agent_bootstrap_path}\"").
       gsub(/build-path=.+/, "build-path=\"#{agent_builds_path}\"").
       gsub(/hooks-path=.+/, "hooks-path=\"#{agent_hooks_path}\"")
+      gsub(/plugins-path=.+/, "plugins-path=\"#{agent_plugins_path}\"")
   end
 
   def plist_manual

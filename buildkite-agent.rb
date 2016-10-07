@@ -96,7 +96,7 @@ class BuildkiteAgent < Formula
       gsub(/token=.+/, "token=\"#{agent_token}\"").
       gsub(/bootstrap-script=.+/, "bootstrap-script=\"#{agent_bootstrap_path}\"").
       gsub(/build-path=.+/, "build-path=\"#{agent_builds_path}\"").
-      gsub(/hooks-path=.+/, "hooks-path=\"#{agent_hooks_path}\"")
+      gsub(/hooks-path=.+/, "hooks-path=\"#{agent_hooks_path}\"").
       gsub(/plugins-path=.+/, "plugins-path=\"#{agent_plugins_path}\"")
   end
 

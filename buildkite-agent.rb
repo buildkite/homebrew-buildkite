@@ -103,6 +103,34 @@ class BuildkiteAgent < Formula
     "buildkite-agent start"
   end
 
+  def caveats
+    <<-EOS.undent
+      \033[32mbuildkite-agent is now installed!\033[0m#{agent_token_reminder}
+
+      Configuration file (to configure agent meta-data, priority, name, etc):
+          #{agent_config_path}
+
+      Hooks directory (for customising the agent):
+          #{agent_hooks_path}
+
+      Builds directory:
+          #{agent_builds_path}
+
+      Log paths:
+          #{var}/log/buildkite-agent.log
+          #{var}/log/buildkite-agent.error.log
+
+      If you set up the LaunchAgent, set your machine to auto-login as
+      your current user. It's also recommended to install Caffeine
+      (http://lightheadsw.com/caffeine/) to prevent your machine from going to
+      sleep or logging out.
+
+      To run multiple agents simply run the buildkite-agent start command
+      multiple times, or duplicate the LaunchAgent plist to create another
+      that starts on login.
+    EOS
+  end
+
   def plist
     <<-EOS.undent
       <?xml version="1.0" encoding="UTF-8"?>
@@ -149,34 +177,6 @@ class BuildkiteAgent < Formula
         <string>#{var}/log/buildkite-agent.error.log</string>
       </dict>
       </plist>
-    EOS
-  end
-
-  def caveats
-    <<-EOS.undent
-      \033[32mbuildkite-agent is now installed!\033[0m#{agent_token_reminder}
-
-      Configuration file (to configure agent meta-data, priority, name, etc):
-          #{agent_config_path}
-
-      Hooks directory (for customising the agent):
-          #{agent_hooks_path}
-
-      Builds directory:
-          #{agent_builds_path}
-
-      Log paths:
-          #{var}/log/buildkite-agent.log
-          #{var}/log/buildkite-agent.error.log
-
-      If you set up the LaunchAgent, set your machine to auto-login as
-      your current user. It's also recommended to install Caffeine
-      (http://lightheadsw.com/caffeine/) to prevent your machine from going to
-      sleep or logging out.
-
-      To run multiple agents simply run the buildkite-agent start command
-      multiple times, or duplicate the LaunchAgent plist to create another
-      that starts on login.
     EOS
   end
 

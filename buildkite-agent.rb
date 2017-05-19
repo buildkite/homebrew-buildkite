@@ -182,6 +182,8 @@ class BuildkiteAgent < Formula
   end
 
   def agent_token_reminder
+    return "" unless agent_config_path.exist?
+
     if agent_config_path.read.include?(default_agent_token)
       "\n      \n      \033[31mDon't forget to update your configuration file with your agent token\033[0m"
     end

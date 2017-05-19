@@ -1,4 +1,5 @@
 class BuildkiteAgent < Formula
+  desc "Build runner for use with Buildkite"
   homepage "https://buildkite.com/docs/agent"
 
   stable do

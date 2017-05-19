@@ -93,10 +93,6 @@ class BuildkiteAgent < Formula
         .gsub(/plugins-path=.+/, "plugins-path=\"#{agent_plugins_path}\"")
   end
 
-  def plist_manual
-    "buildkite-agent start"
-  end
-
   def caveats
     <<-EOS.undent
       \033[32mbuildkite-agent is now installed!\033[0m#{agent_token_reminder}
@@ -124,6 +120,8 @@ class BuildkiteAgent < Formula
       that starts on login.
     EOS
   end
+
+  plist_options :manual => "buildkite-agent start"
 
   def plist
     <<-EOS.undent

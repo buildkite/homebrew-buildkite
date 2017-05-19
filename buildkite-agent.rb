@@ -61,8 +61,6 @@ class BuildkiteAgent < Formula
   end
 
   def install
-    bin.mkpath
-
     agent_etc.mkpath
     agent_var.mkpath
     pkgshare.mkpath

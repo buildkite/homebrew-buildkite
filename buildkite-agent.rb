@@ -1,6 +1,5 @@
-require "formula"
-
 class BuildkiteAgent < Formula
+  desc "Build runner for use with Buildkite"
   homepage "https://buildkite.com/docs/agent"
 
   stable do
@@ -27,10 +26,6 @@ class BuildkiteAgent < Formula
 
   def agent_etc
     etc/"buildkite-agent"
-  end
-
-  def agent_share
-    share/"buildkite-agent"
   end
 
   def agent_var
@@ -62,15 +57,13 @@ class BuildkiteAgent < Formula
   end
 
   def agent_config_dist_path
-    agent_share/"buildkite-agent.dist.cfg"
+    pkgshare/"buildkite-agent.dist.cfg"
   end
 
   def install
-    bin.mkpath
-
     agent_etc.mkpath
     agent_var.mkpath
-    agent_share.mkpath
+    pkgshare.mkpath
     agent_hooks_path.mkpath
     agent_builds_path.mkpath
 
@@ -92,17 +85,43 @@ class BuildkiteAgent < Formula
   end
 
   def default_config_file(agent_token = default_agent_token)
-    File.read("buildkite-agent.cfg").
-      gsub(/token=.+/, "token=\"#{agent_token}\"").
-      gsub(/bootstrap-script=.+/, "bootstrap-script=\"#{agent_bootstrap_path}\"").
-      gsub(/build-path=.+/, "build-path=\"#{agent_builds_path}\"").
-      gsub(/hooks-path=.+/, "hooks-path=\"#{agent_hooks_path}\"").
-      gsub(/plugins-path=.+/, "plugins-path=\"#{agent_plugins_path}\"")
+    File.read("buildkite-agent.cfg")
+        .gsub(/token=.+/, "token=\"#{agent_token}\"")
+        .gsub(/bootstrap-script=.+/, "bootstrap-script=\"#{agent_bootstrap_path}\"")
+        .gsub(/build-path=.+/, "build-path=\"#{agent_builds_path}\"")
+        .gsub(/hooks-path=.+/, "hooks-path=\"#{agent_hooks_path}\"")
+        .gsub(/plugins-path=.+/, "plugins-path=\"#{agent_plugins_path}\"")
   end
 
-  def plist_manual
-    "buildkite-agent start"
+  def caveats
+    <<-EOS.undent
+      \033[32mbuildkite-agent is now installed!\033[0m#{agent_token_reminder}
+
+      Configuration file (to configure agent meta-data, priority, name, etc):
+          #{agent_config_path}
+
+      Hooks directory (for customising the agent):
+          #{agent_hooks_path}
+
+      Builds directory:
+          #{agent_builds_path}
+
+      Log paths:
+          #{var}/log/buildkite-agent.log
+          #{var}/log/buildkite-agent.error.log
+
+      If you set up the LaunchAgent, set your machine to auto-login as
+      your current user. It's also recommended to install Caffeine
+      (http://lightheadsw.com/caffeine/) to prevent your machine from going to
+      sleep or logging out.
+
+      To run multiple agents simply run the buildkite-agent start command
+      multiple times, or duplicate the LaunchAgent plist to create another
+      that starts on login.
+    EOS
   end
+
+  plist_options :manual => "buildkite-agent start"
 
   def plist
     <<-EOS.undent
@@ -153,35 +172,9 @@ class BuildkiteAgent < Formula
     EOS
   end
 
-  def caveats
-    <<-EOS.undent
-      \033[32mbuildkite-agent is now installed!\033[0m#{agent_token_reminder}
-
-      Configuration file (to configure agent meta-data, priority, name, etc):
-          #{agent_config_path}
-
-      Hooks directory (for customising the agent):
-          #{agent_hooks_path}
-
-      Builds directory:
-          #{agent_builds_path}
-
-      Log paths:
-          #{var}/log/buildkite-agent.log
-          #{var}/log/buildkite-agent.error.log
-
-      If you set up the LaunchAgent, set your machine to auto-login as
-      your current user. It's also recommended to install Caffeine
-      (http://lightheadsw.com/caffeine/) to prevent your machine from going to
-      sleep or logging out.
-
-      To run multiple agents simply run the buildkite-agent start command
-      multiple times, or duplicate the LaunchAgent plist to create another
-      that starts on login.
-    EOS
-  end
-
   def agent_token_reminder
+    return "" unless agent_config_path.exist?
+
     if agent_config_path.read.include?(default_agent_token)
       "\n      \n      \033[31mDon't forget to update your configuration file with your agent token\033[0m"
     end

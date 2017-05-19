@@ -28,10 +28,6 @@ class BuildkiteAgent < Formula
     etc/"buildkite-agent"
   end
 
-  def agent_share
-    share/"buildkite-agent"
-  end
-
   def agent_var
     var/"buildkite-agent"
   end
@@ -61,7 +57,7 @@ class BuildkiteAgent < Formula
   end
 
   def agent_config_dist_path
-    agent_share/"buildkite-agent.dist.cfg"
+    pkgshare/"buildkite-agent.dist.cfg"
   end
 
   def install
@@ -69,7 +65,7 @@ class BuildkiteAgent < Formula
 
     agent_etc.mkpath
     agent_var.mkpath
-    agent_share.mkpath
+    pkgshare.mkpath
     agent_hooks_path.mkpath
     agent_builds_path.mkpath
 

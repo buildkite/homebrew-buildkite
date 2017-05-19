@@ -1,5 +1,3 @@
-require "formula"
-
 class BuildkiteAgent < Formula
   homepage "https://buildkite.com/docs/agent"
 

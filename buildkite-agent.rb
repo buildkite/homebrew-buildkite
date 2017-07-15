@@ -166,7 +166,7 @@ class BuildkiteAgent < Formula
         <string>#{var}/log/buildkite-agent.log</string>
 
         <key>StandardErrorPath</key>
-        <string>#{var}/log/buildkite-agent.error.log</string>
+        <string>#{var}/log/buildkite-agent.log</string>
       </dict>
       </plist>
     EOS

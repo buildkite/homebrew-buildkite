@@ -9,9 +9,9 @@ class BuildkiteAgent < Formula
   end
 
   devel do
-    version "3.0-beta.29"
-    url     "https://github.com/buildkite/agent/releases/download/v3.0-beta.29/buildkite-agent-darwin-386-3.0-beta.29.tar.gz"
-    sha256  "4c763ddbec961a720d11a20270337ac9ce12d1dffc3963668169c7008ff8eed6"
+    version "3.0-beta.30"
+    url     "https://github.com/buildkite/agent/releases/download/v3.0-beta.30/buildkite-agent-darwin-386-3.0-beta.30.tar.gz"
+    sha256  "5ef0c3f666533364de7cb903278976fb20e95f67c68123bf4fa0a666dad063b2"
   end
 
   option "token=", "Your account's agent token to add to the config on install"

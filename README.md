@@ -1,6 +1,6 @@
 # Buildkite Homebrew Formulae
 
-A collection of [Buildkite](https://buildkite.com/) formulae for [Homebrew](http://brew.sh), a package manager for OS X.
+A collection of [Buildkite](https://buildkite.com/) formulae for [Homebrew](http://brew.sh), a package manager for macOS.
 
 To use the formulae, tap this repository into your home brew:
 

@@ -94,7 +94,7 @@ class BuildkiteAgent < Formula
   end
 
   def caveats
-    <<-EOS.undent
+    <<~EOS
       \033[32mbuildkite-agent is now installed!\033[0m#{agent_token_reminder}
 
       Configuration file (to configure agent meta-data, priority, name, etc):
@@ -124,7 +124,7 @@ class BuildkiteAgent < Formula
   plist_options :manual => "buildkite-agent start"
 
   def plist
-    <<-EOS.undent
+    <<~EOS
       <?xml version="1.0" encoding="UTF-8"?>
       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
       <plist version="1.0">

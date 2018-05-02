@@ -3,9 +3,9 @@ class BuildkiteAgent < Formula
   homepage "https://buildkite.com/docs/agent"
 
   stable do
-    version "3.0.1"
-    url     "https://github.com/buildkite/agent/releases/download/v3.0.1/buildkite-agent-darwin-amd64-3.0.1.tar.gz"
-    sha256  "034007113a0674457d4991d0a994c9a6d9486f05508bb996184600bda0e2165f"
+    version "3.1.1"
+    url     "https://github.com/buildkite/agent/releases/download/v3.1.1/buildkite-agent-darwin-amd64-3.1.1.tar.gz"
+    sha256  "c427a8aa04b3da42031d90cbcfaa550c0063f84ad7368484fdca498087dbde75"
   end
 
   devel do

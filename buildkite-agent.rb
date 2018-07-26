@@ -154,7 +154,10 @@ class BuildkiteAgent < Formula
         <true/>
 
         <key>KeepAlive</key>
-        <true/>
+        <dict>
+          <key>SuccessfulExit</key>
+          <true/>
+        </dict>
 
         <key>ProcessType</key>
         <string>Interactive</string>

@@ -8,12 +8,6 @@ class BuildkiteAgent < Formula
     sha256  "7262f50a919bbf2f44f28a28b5776fba1fa7af142f03ffbdc9f3c2aa98b19e0b"
   end
 
-  devel do
-    version "3.0-beta.44"
-    url     "https://github.com/buildkite/agent/releases/download/v3.0-beta.44/buildkite-agent-darwin-amd64-3.0-beta.44.tar.gz"
-    sha256  "fe53562074dc40683f89f7429e1a256c9a891615b63ec1238d13ba6d0eed7d96"
-  end
-
   option "token=", "Your account's agent token to add to the config on install"
 
   def default_agent_token

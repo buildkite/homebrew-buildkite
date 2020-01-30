@@ -3,9 +3,9 @@ class BuildkiteAgent < Formula
   homepage "https://buildkite.com/docs/agent"
 
   stable do
-    version "3.18.0"
-    url     "https://github.com/buildkite/agent/releases/download/v3.18.0/buildkite-agent-darwin-amd64-3.18.0.tar.gz"
-    sha256  "3ded810718566c15dec618987d73bd35474c367ef70e6650feb0e4206c62988d"
+    version "3.19.0"
+    url     "https://github.com/buildkite/agent/releases/download/v3.19.0/buildkite-agent-darwin-amd64-3.19.0.tar.gz"
+    sha256  "ed453a49c29b962d758e5b21660ad4345937ad14850f9fa53c963b4044d70dbb"
   end
 
   option "token=", "Your account's agent token to add to the config on install"

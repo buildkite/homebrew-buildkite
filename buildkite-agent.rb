@@ -15,7 +15,7 @@ class BuildkiteAgent < Formula
   end
 
   def agent_token
-    ARGV.value("token") || default_agent_token
+    Homebrew.args.value("token") || default_agent_token
   end
 
   def agent_etc

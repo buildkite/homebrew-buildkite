@@ -8,16 +8,6 @@ class BuildkiteAgent < Formula
     sha256  "0348a7c8e60444dc474cd7c39b6548fcafe8c4405e8fc5cdbff814f9515d73e4"
   end
 
-  option "token=", "Your account's agent token to add to the config on install"
-
-  def default_agent_token
-    "xxx"
-  end
-
-  def agent_token
-    Homebrew.args.value("token") || default_agent_token
-  end
-
   def agent_etc
     etc/"buildkite-agent"
   end
@@ -72,15 +62,14 @@ class BuildkiteAgent < Formula
       puts "\033[35mIgnoring existing config file at #{agent_config_path}\033[0m"
       puts "\033[35mFor changes see the updated dist copy at #{agent_config_dist_path}\033[0m"
     else
-      agent_config_path.write(default_config_file(agent_token))
+      agent_config_path.write(default_config_file)
     end
 
     bin.install "buildkite-agent"
   end
 
-  def default_config_file(agent_token = default_agent_token)
+  def default_config_file
     File.read("buildkite-agent.cfg")
-        .gsub(/token=.+/, "token=\"#{agent_token}\"")
         .gsub(/bootstrap-script=.+/, "bootstrap-script=\"#{agent_bootstrap_path}\"")
         .gsub(/build-path=.+/, "build-path=\"#{agent_builds_path}\"")
         .gsub(/hooks-path=.+/, "hooks-path=\"#{agent_hooks_path}\"")
@@ -89,9 +78,11 @@ class BuildkiteAgent < Formula
 
   def caveats
     <<~EOS
-      \033[32mbuildkite-agent is now installed!\033[0m#{agent_token_reminder}
+      \033[32mbuildkite-agent is now installed!\033[0m
 
-      Configuration file (to configure agent meta-data, priority, name, etc):
+      \033[31mDon't forget to update your configuration file with your agent token\033[0m
+
+      Configuration file (to configure agent token, meta-data, priority, name, etc):
           #{agent_config_path}
 
       Hooks directory (for customising the agent):
@@ -167,14 +158,6 @@ class BuildkiteAgent < Formula
       </dict>
       </plist>
     EOS
-  end
-
-  def agent_token_reminder
-    return "" unless agent_config_path.exist?
-
-    if agent_config_path.read.include?(default_agent_token)
-      "\n      \n      \033[31mDon't forget to update your configuration file with your agent token\033[0m"
-    end
   end
 
   test do

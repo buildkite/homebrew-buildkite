@@ -4,7 +4,7 @@ class BuildkiteAgent < Formula
 
   stable do
     version "3.26.0"
-    if Hardware::CPU.physical_cpu_arm64?
+    if Hardware::CPU.arm?
       url     "https://github.com/buildkite/agent/releases/download/v3.26.0/buildkite-agent-darwin-arm64-3.26.0.tar.gz"
       sha256  "92d731d04912b3de0eb03fe849a0f9eb75554c22ca538a5f388ce3cc66f923e8"
     else

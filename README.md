@@ -17,10 +17,14 @@ This repository will have been cloned into your Homebrew’s `Libray/Taps` direc
 To install [buildkite-agent](https://github.com/buildkite/agent):
 
 ```bash
-brew install --token='your-agent-token-here' buildkite-agent
+brew install buildkite-agent
 ```
 
-You can find your agent token on your "Agents" page in Buildkite.
+You then need to configure your agent token, which you can find your agent token on your "Agents" page in Buildkite:
+
+```bash
+sed -i '' "s/xxx/INSERT-YOUR-AGENT-TOKEN-HERE/g" "$(brew --prefix)"/etc/buildkite-agent/buildkite-agent.cfg
+```
 
 If you want it start on login follow the `brew install` instructions to install the LaunchAgent plist. You’ll also want to make sure your PC is set to automatically login (the agent won’t launch until you've logged in) and you’ve prevented your machine from going to sleep.
 

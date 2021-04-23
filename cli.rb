@@ -2,12 +2,12 @@ class Cli < Formula
   desc "A command-line tool for working with Buildkite"
   homepage "https://github.com/buildkite/cli"
 
-  version "0.2.0"
-  url "https://github.com/buildkite/cli/releases/download/v0.2.0/bk-darwin-amd64-0.2.0"
-  sha256 "fd98d21bce1ae8d47bec7b27337ecfb7f7829f99cd155fb532167b53df5e1816"
+  version "1.1.0"
+  url "https://github.com/buildkite/cli/releases/download/v1.1.0/bk-darwin-amd64-1.1.0"
+  sha256 "580e595c67be43d95ecfd4525c0d0070ea85e8d288370af56ae6d3163c5164f3"
 
   def install
-    bin.install "bk-darwin-amd64-0.2.0" => "bk"
+    bin.install "bk-darwin-amd64-1.1.0" => "bk"
   end
 
   def caveats; <<~EOS

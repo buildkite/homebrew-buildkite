@@ -103,9 +103,9 @@ class BuildkiteAgent < Formula
       If you set up the LaunchAgent, set your machine to auto-login as
       your current user.
 
-      To prevent your machine from sleeping or logging out, use `caffienate`. For
+      To prevent your machine from sleeping or logging out, use `caffeinate`. For
       example, running `caffeinate -i buildkite-agent start` runs buildkite-agent
-      and prevents the system from idling until it exits. Run `man caffienate` for
+      and prevents the system from idling until it exits. Run `man caffeinate` for
       details.
 
       To run multiple agents simply run the buildkite-agent start command

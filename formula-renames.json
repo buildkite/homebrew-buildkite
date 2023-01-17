@@ -1,3 +1,4 @@
 {
-  "bk": "cli"
+  "bk": "buildkite-cli",
+  "cli": "buildkite-cli"
 }

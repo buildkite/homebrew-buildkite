@@ -1,4 +1,4 @@
-class Cli < Formula
+class BuildkiteCli < Formula
   desc "A command-line tool for working with Buildkite"
   homepage "https://github.com/buildkite/cli"
 

@@ -25,7 +25,7 @@ brew install buildkite/buildkite/buildkite-agent
 You then need to configure your agent token, which you can find your agent token on your "Agents" page in Buildkite:
 
 ```bash
-sed -i '' "s/xxx/INSERT-YOUR-AGENT-TOKEN-HERE/g" "$(brew --prefix)"/etc/buildkite-agent/buildkite-agent.cfg
+sed -i '' "s/xxx/INSERT-YOUR-AGENT-TOKEN-HERE/g" "$(brew --prefix)"/usr/local/etc/buildkite-agent/buildkite-agent.cfg
 ```
 
 If you want it start on login follow the `brew install` instructions to install the LaunchAgent plist. You’ll also want to make sure your PC is set to automatically login (the agent won’t launch until you've logged in) and you’ve prevented your machine from going to sleep.

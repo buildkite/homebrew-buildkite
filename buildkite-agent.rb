@@ -3,13 +3,13 @@ class BuildkiteAgent < Formula
   homepage "https://buildkite.com/docs/agent"
 
   stable do
-    version "3.33.3"
+    version "3.64.0"
     if Hardware::CPU.arm?
-      url     "https://github.com/buildkite/agent/releases/download/v3.33.3/buildkite-agent-darwin-arm64-3.33.3.tar.gz"
-      sha256  "1f7ad047f264750fb4b98e9cb7a439a768496358b544641da904913800d035c8"
+      url     "https://github.com/buildkite/agent/releases/download/v3.64.0/buildkite-agent-darwin-arm64-3.64.0.tar.gz"
+      sha256  "dc03ca90db0c626b1e0e2fe6a3fd00594f893f7bebb8867fd181476b3cabc9a8"
     else
-      url     "https://github.com/buildkite/agent/releases/download/v3.33.3/buildkite-agent-darwin-amd64-3.33.3.tar.gz"
-      sha256  "19f108798308a98dcdddb750faea1f8fa8dc832501fa46757ca4b462b9eb58a0"
+      url     "https://github.com/buildkite/agent/releases/download/v3.64.0/buildkite-agent-darwin-amd64-3.64.0.tar.gz"
+      sha256  "e7143e58cb018634061f0a1be1d2ce80c8419bb03b0205adbb04d3a50c02f926"
     end
   end
 
@@ -101,9 +101,12 @@ class BuildkiteAgent < Formula
           #{var}/log/buildkite-agent.error.log
 
       If you set up the LaunchAgent, set your machine to auto-login as
-      your current user. It's also recommended to install Caffeine
-      (http://lightheadsw.com/caffeine/) to prevent your machine from going to
-      sleep or logging out.
+      your current user.
+
+      To prevent your machine from sleeping or logging out, use `caffeinate`. For
+      example, running `caffeinate -i buildkite-agent start` runs buildkite-agent
+      and prevents the system from idling until it exits. Run `man caffeinate` for
+      details.
 
       To run multiple agents simply run the buildkite-agent start command
       multiple times, or duplicate the LaunchAgent plist to create another
@@ -111,58 +114,17 @@ class BuildkiteAgent < Formula
     EOS
   end
 
-  plist_options :manual => "buildkite-agent start"
-
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-        <key>Label</key>
-        <string>#{plist_name}</string>
-
-        <key>WorkingDirectory</key>
-        <string>#{HOMEBREW_PREFIX}/bin</string>
-
-        <key>ProgramArguments</key>
-        <array>
-          <string>#{HOMEBREW_PREFIX}/bin/buildkite-agent</string>
-          <string>start</string>
-          <string>--config</string>
-          <string>#{agent_config_path}</string>
-          <!--<string>--debug</string>-->
-        </array>
-
-        <key>EnvironmentVariables</key>
-        <dict>
-          <key>PATH</key>
-          <string>#{HOMEBREW_PREFIX}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
-        </dict>
-
-        <key>RunAtLoad</key>
-        <true/>
-
-        <key>KeepAlive</key>
-        <dict>
-          <key>SuccessfulExit</key>
-          <false/>
-        </dict>
-
-        <key>ProcessType</key>
-        <string>Interactive</string>
-
-        <key>ThrottleInterval</key>
-        <integer>30</integer>
-
-        <key>StandardOutPath</key>
-        <string>#{var}/log/buildkite-agent.log</string>
-
-        <key>StandardErrorPath</key>
-        <string>#{var}/log/buildkite-agent.log</string>
-      </dict>
-      </plist>
-    EOS
+  service do
+    run [
+      HOMEBREW_PREFIX/"bin/buildkite-agent", "start", 
+        "--config", etc/"buildkite-agent/buildkite-agent.cfg"
+    ]
+    working_dir HOMEBREW_PREFIX/"bin"   # Why?
+    keep_alive successful_exit: false
+    environment_variables PATH: HOMEBREW_PREFIX/"bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    process_type :interactive
+    log_path var/"log/buildkite-agent.log"
+    error_log_path var/"log/buildkite-agent.log"
   end
 
   test do

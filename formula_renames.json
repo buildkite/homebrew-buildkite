@@ -1,4 +1,5 @@
 {
   "bk": "bk@2",
-  "cli": "buildkite-cli"
+  "buildkite-cli": "bk@2",
+  "cli": "bk@2"
 }

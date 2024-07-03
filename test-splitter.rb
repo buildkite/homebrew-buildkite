@@ -20,6 +20,7 @@ class TestSplitter < Formula
   end
 
   test do
-    system "test-splitter", "--version"
+    version_output = shell_output("test-splitter --version")
+    assert_match "v0.7.2\n", version_output
   end
 end

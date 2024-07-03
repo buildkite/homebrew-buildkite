@@ -2,13 +2,13 @@ class TestSplitter < Formula
   desc "Buildkite test splitting client"
   homepage "https://github.com/buildkite/test-splitter"
 
-  version "0.7.1"
+  version "0.7.2"
   if Hardware::CPU.arm?
-    url "https://github.com/buildkite/test-splitter/releases/download/v0.7.1/test-splitter-darwin-arm64"
-    sha256 "f67dda69a3e2b15dc5f2d0a6aa5bde71b4b0526b918eaaef9746af57218af4f2"
+    url "https://github.com/buildkite/test-splitter/releases/download/v0.7.2/test-splitter-darwin-arm64"
+    sha256 "7d800fd40ef6dc22c04b0cc373780f5b6b15c3c9f342678fbf7850152121a592"
   else
-    url "https://github.com/buildkite/test-splitter/releases/download/v0.7.1/test-splitter-darwin-amd64"
-    sha256 "2af04832cb323bd5b10dba4d7334908cf9ceefa185fb0866ebbb90149f17d599"
+    url "https://github.com/buildkite/test-splitter/releases/download/v0.7.2/test-splitter-darwin-amd64"
+    sha256 "ede9678b2994eb6a7f1b25f5d1650b0c922f94f27f2a0c6b2688606d14dd3f3e"
   end
 
   def install

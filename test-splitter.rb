@@ -5,23 +5,23 @@
 class TestSplitter < Formula
   desc "Buildkite test splitting client"
   homepage "https://github.com/buildkite/test-splitter"
-  version "0.8.1"
+  version "0.9.0"
 
   on_macos do
     on_intel do
-      url "https://github.com/buildkite/test-splitter/releases/download/v0.8.1/test-splitter_0.8.1_darwin_amd64"
-      sha256 "c21d7a24a5c0b89f727f8bdc542346df1f14caacfc458384b3a101ba9a46106b"
+      url "https://github.com/buildkite/test-splitter/releases/download/v0.9.0/test-splitter_0.9.0_darwin_amd64"
+      sha256 "4c615a5f87bdc1cfab73054223f85ba8ad7a58152e9413ef1d1a2649e69a48ca"
 
       def install
-        bin.install "test-splitter_0.8.1_darwin_amd64" => "test-splitter"
+        bin.install "test-splitter_0.9.0_darwin_amd64" => "test-splitter"
       end
     end
     on_arm do
-      url "https://github.com/buildkite/test-splitter/releases/download/v0.8.1/test-splitter_0.8.1_darwin_arm64"
-      sha256 "fe174bbfae7abe8d2fe3de4b2ce2b7f065bed894068a1c1a7d01346bbce85fcb"
+      url "https://github.com/buildkite/test-splitter/releases/download/v0.9.0/test-splitter_0.9.0_darwin_arm64"
+      sha256 "45a21b51974967f78a88b47b289e9f1b9b8a46835ed5c491a002982d002fa1c5"
 
       def install
-        bin.install "test-splitter_0.8.1_darwin_arm64" => "test-splitter"
+        bin.install "test-splitter_0.9.0_darwin_arm64" => "test-splitter"
       end
     end
   end
@@ -29,21 +29,21 @@ class TestSplitter < Formula
   on_linux do
     on_intel do
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/buildkite/test-splitter/releases/download/v0.8.1/test-splitter_0.8.1_linux_amd64"
-        sha256 "0828ad2c1f6929dce0c3ad0574fa2eb5bdc71db6d11d3f4fcb277bb60c4ffd1a"
+        url "https://github.com/buildkite/test-splitter/releases/download/v0.9.0/test-splitter_0.9.0_linux_amd64"
+        sha256 "d0c293feca59be9302fcf6e9d0e56783644094cb22395afff09cb0258ed055b1"
 
         def install
-          bin.install "test-splitter_0.8.1_linux_amd64" => "test-splitter"
+          bin.install "test-splitter_0.9.0_linux_amd64" => "test-splitter"
         end
       end
     end
     on_arm do
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/buildkite/test-splitter/releases/download/v0.8.1/test-splitter_0.8.1_linux_arm64"
-        sha256 "cca42dae6c2bd66a06ef29faa3ab03b22e7979de56f1289d7b49b4d851e27093"
+        url "https://github.com/buildkite/test-splitter/releases/download/v0.9.0/test-splitter_0.9.0_linux_arm64"
+        sha256 "21793c981ddd789cac3d6dba1eb38fe31c7d2895a07dbd02cf7e025ce7879d7f"
 
         def install
-          bin.install "test-splitter_0.8.1_linux_arm64" => "test-splitter"
+          bin.install "test-splitter_0.9.0_linux_arm64" => "test-splitter"
         end
       end
     end

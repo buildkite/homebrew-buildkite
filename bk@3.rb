@@ -62,8 +62,6 @@ class BkAT3 < Formula
 
   def caveats
     <<~EOS
-      This is beta software
-
       For any questions, issues or feedback, please file an issue at https://github.com/buildkite/cli/issues
     EOS
   end

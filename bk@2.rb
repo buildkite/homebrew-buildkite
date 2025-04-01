@@ -2,6 +2,8 @@ class BkAT2 < Formula
   desc "A command-line tool for working with Buildkite"
   homepage "https://github.com/buildkite/cli"
 
+  deprecated! date: "2025-04-01", because: "is no longer maintained, use bk@3 instead"
+
   version "2.0.0"
   if Hardware::CPU.arm?
     url "https://github.com/buildkite/cli/releases/download/v2.0.0/cli-darwin-arm64"

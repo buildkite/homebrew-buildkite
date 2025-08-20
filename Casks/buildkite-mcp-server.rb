@@ -2,7 +2,7 @@
 cask "buildkite-mcp-server" do
   desc "Model Context Protocol server for Buildkite"
   homepage "https://github.com/buildkite/buildkite-mcp-server"
-  version "0.5.5"
+  version "0.5.9"
 
   livecheck do
     skip "Auto-generated on release."
@@ -12,23 +12,23 @@ cask "buildkite-mcp-server" do
 
   on_macos do
     on_intel do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.5/buildkite-mcp-server_Darwin_x86_64.tar.gz"
-      sha256 "ac3694528e2edc588b2b68ff78a4a9ba9b3e49c83d2197f1fdd2c74686f37b54"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.9/buildkite-mcp-server_Darwin_x86_64.tar.gz"
+      sha256 "26d9f045de92cf56453d04254aacc40b9ccf3c0b08f2885d0a004c1d94cdf15c"
     end
     on_arm do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.5/buildkite-mcp-server_Darwin_arm64.tar.gz"
-      sha256 "8f150332a17b28297488151a2f28051acd8cf0df5ce09991f848c404239ac784"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.9/buildkite-mcp-server_Darwin_arm64.tar.gz"
+      sha256 "496e8f390fd54545ac70c63321c1b2f77fa2afee5fa22b7525f5739864f15f4a"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.5/buildkite-mcp-server_Linux_x86_64.tar.gz"
-      sha256 "95299b5344571adae5f5fd53682e44a9240783cb20e19d772310d79bb22a5d1d"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.9/buildkite-mcp-server_Linux_x86_64.tar.gz"
+      sha256 "478a5a3d2f2374058b955d2b84bddc5982a85cf51d6ca7f0b2eb3c488e638791"
     end
     on_arm do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.5/buildkite-mcp-server_Linux_arm64.tar.gz"
-      sha256 "df225ce60d32ab54a20653818a9ba7cf36395906f436954ddd62defa2faf64f1"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.9/buildkite-mcp-server_Linux_arm64.tar.gz"
+      sha256 "1dd0a350c02d620ffe62da07ef25391ebb42f4e85080c26ae0f877f68bca0b13"
     end
   end
 

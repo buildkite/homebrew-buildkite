@@ -2,7 +2,7 @@
 cask "buildkite-mcp-server" do
   desc "Model Context Protocol server for Buildkite"
   homepage "https://github.com/buildkite/buildkite-mcp-server"
-  version "0.5.10"
+  version "0.5.11"
 
   livecheck do
     skip "Auto-generated on release."
@@ -12,23 +12,23 @@ cask "buildkite-mcp-server" do
 
   on_macos do
     on_intel do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.10/buildkite-mcp-server_Darwin_x86_64.tar.gz"
-      sha256 "213ac8bb9b1e13b05e0eb0f5a766b1c23e6486e396e88fc19aa779ff063d6e57"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.11/buildkite-mcp-server_Darwin_x86_64.tar.gz"
+      sha256 "3b20c5d3ffee7a7bfcad79fad7fbdc8da612b4c1bdb81b16d0cf2c5fa9c71954"
     end
     on_arm do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.10/buildkite-mcp-server_Darwin_arm64.tar.gz"
-      sha256 "0e420e1473e3542172a123eed12e6d858702256219fce6f89a6b6caa1214947f"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.11/buildkite-mcp-server_Darwin_arm64.tar.gz"
+      sha256 "2ad017396970d15793ed248722d09fc2809e92bd477c9f93c99ffafe48b60cde"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.10/buildkite-mcp-server_Linux_x86_64.tar.gz"
-      sha256 "5494c21a7b328b8048a3778abb7c3a8a4570e08712b4f19753364ca0f2261982"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.11/buildkite-mcp-server_Linux_x86_64.tar.gz"
+      sha256 "1254e3734bd1e840546992f304e37c20c9249f09e8f2c542b5755a7c0094424c"
     end
     on_arm do
-      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.10/buildkite-mcp-server_Linux_arm64.tar.gz"
-      sha256 "e65167553f0baf4eb9d9c42b84efcac1c5c85c69899e7ebc4a25119d18f3b15b"
+      url "https://github.com/buildkite/buildkite-mcp-server/releases/download/v0.5.11/buildkite-mcp-server_Linux_arm64.tar.gz"
+      sha256 "3278ef9edc63e0dadf7f1465132015bcc2ca211fee7516260873a5f05a898732"
     end
   end
 

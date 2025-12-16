@@ -2,7 +2,7 @@ class BkAT2 < Formula
   desc "A command-line tool for working with Buildkite"
   homepage "https://github.com/buildkite/cli"
 
-  deprecated! date: "2025-04-01", because: "is no longer maintained, use bk@3 instead"
+  disable! date: "2025-12-16", because: "is no longer maintained, use bk@3 instead"
 
   version "2.0.0"
   if Hardware::CPU.arm?
@@ -15,9 +15,9 @@ class BkAT2 < Formula
 
   def install
     if Hardware::CPU.arm?
-      bin.install "cli-darwin-arm64" => "bk"
+      bin.install "cli-darwin-arm64" => "bk@2"
     else
-      bin.install "cli-darwin-amd64" => "bk"
+      bin.install "cli-darwin-amd64" => "bk@2"
     end
   end
 

@@ -5,21 +5,21 @@
 class BkAT3 < Formula
   desc "Work with Buildkite from the command-line"
   homepage "https://github.com/buildkite/cli"
-  version "3.24.0"
+  version "3.24.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/buildkite/cli/releases/download/v3.24.0/bk_3.24.0_macOS_amd64.zip"
-      sha256 "d2bb36e0b2fcb5a2d7155baa54d5031a2c98dfc7d26c7d59fd875ce8e0195324"
+      url "https://github.com/buildkite/cli/releases/download/v3.24.1/bk_3.24.1_macOS_amd64.zip"
+      sha256 "5378e4cdcd6ba602a842186472a2ca6ff5ca53e5c99fcc50cbece7b766652b0b"
 
       def install
         bin.install "bk"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/buildkite/cli/releases/download/v3.24.0/bk_3.24.0_macOS_arm64.zip"
-      sha256 "6ede030db14afcbef02f19e670aaf8a9abadc226b526969e901bcdcea74c63b2"
+      url "https://github.com/buildkite/cli/releases/download/v3.24.1/bk_3.24.1_macOS_arm64.zip"
+      sha256 "a2c2d93fba2245f3c22cad2682a23595e8a9a0003466ee181b4472a6e593b73c"
 
       def install
         bin.install "bk"
@@ -29,22 +29,22 @@ class BkAT3 < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/cli/releases/download/v3.24.0/bk_3.24.0_linux_amd64.tar.gz"
-      sha256 "9a12b127268e2fc6d30609e66fecc814b56543b5537b725dc7973aa0a2f31617"
+      url "https://github.com/buildkite/cli/releases/download/v3.24.1/bk_3.24.1_linux_amd64.tar.gz"
+      sha256 "dfee672bd88a0255385c49f1cb1039ead1bc71b5d2e8272d55a82e41b811d512"
       def install
         bin.install "bk"
       end
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/cli/releases/download/v3.24.0/bk_3.24.0_linux_armv6.tar.gz"
-      sha256 "4107825f100c7526382c582074ed4c0b934a5c4fc84f9063fb79a2806c25b6a6"
+      url "https://github.com/buildkite/cli/releases/download/v3.24.1/bk_3.24.1_linux_armv6.tar.gz"
+      sha256 "28cf1c8e597db234d5d10fe1d31ceddd58d64fc298c9d78b347f9da5f22e4776"
       def install
         bin.install "bk"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/cli/releases/download/v3.24.0/bk_3.24.0_linux_arm64.tar.gz"
-      sha256 "19bbaf8e2beb6e4ea737cf89611f7c8a7c0121d9d44c11621ffcf8b5b22b0b29"
+      url "https://github.com/buildkite/cli/releases/download/v3.24.1/bk_3.24.1_linux_arm64.tar.gz"
+      sha256 "8a91d8a5af115228fdf4e2d3fb0bc72656020a38d2272077bcdf760d0ce4bd3d"
       def install
         bin.install "bk"
       end

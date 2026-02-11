@@ -5,40 +5,40 @@
 class Bktec < Formula
   desc "Buildkite Test Engine Client"
   homepage "https://github.com/buildkite/test-engine-client"
-  version "2.1.1"
+  version "2.1.2"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.1/bktec_2.1.1_darwin_amd64"
-      sha256 "b13746d637e7abe0ac378b268218bfcd415c2ec2c7261c44a90b0f21e1bc76a4"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.2/bktec_2.1.2_darwin_amd64"
+      sha256 "f31d8f5c1f2fc8ebb5d7424c860a07b858b87cab616f4f7281b1a674bc1a09b1"
 
       def install
-        bin.install "bktec_2.1.1_darwin_amd64" => "bktec"
+        bin.install "bktec_2.1.2_darwin_amd64" => "bktec"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.1/bktec_2.1.1_darwin_arm64"
-      sha256 "6175a983db3a9e9f836e60e04903e3616840b108ab4d33bd2b458bf84a72986f"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.2/bktec_2.1.2_darwin_arm64"
+      sha256 "6ab29fbb9e0ad64bde8a40718695f0f1ed63ad0655423be2ac7a4e0dbb59439d"
 
       def install
-        bin.install "bktec_2.1.1_darwin_arm64" => "bktec"
+        bin.install "bktec_2.1.2_darwin_arm64" => "bktec"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.1/bktec_2.1.1_linux_amd64"
-      sha256 "3d01277a79f236ec2a91d324379a20bec2f2b46daae6047ef8915c6ddb353026"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.2/bktec_2.1.2_linux_amd64"
+      sha256 "2b5f7651f8f7fb70ca478d14860832d24b1dca65cc7ff81e29dc8a908d9dbe76"
       def install
-        bin.install "bktec_2.1.1_linux_amd64" => "bktec"
+        bin.install "bktec_2.1.2_linux_amd64" => "bktec"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.1/bktec_2.1.1_linux_arm64"
-      sha256 "a47a2ffb814d8124f8165aca838dbf21fbbeee275a8dbc8dbd9df9bb04fd3571"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v2.1.2/bktec_2.1.2_linux_arm64"
+      sha256 "20996f45eb3a1f7fa6f896176decb73e02b75a093f1d6c1a74e26232388e5399"
       def install
-        bin.install "bktec_2.1.1_linux_arm64" => "bktec"
+        bin.install "bktec_2.1.2_linux_arm64" => "bktec"
       end
     end
   end

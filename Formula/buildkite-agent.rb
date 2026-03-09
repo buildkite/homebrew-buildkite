@@ -3,13 +3,13 @@ class BuildkiteAgent < Formula
   homepage "https://buildkite.com/docs/agent"
 
   stable do
-    version "3.119.1"
+    version "3.119.2"
     if Hardware::CPU.arm?
-      url     "https://github.com/buildkite/agent/releases/download/v3.119.1/buildkite-agent-darwin-arm64-3.119.1.tar.gz"
-      sha256  "5034881c1a6fdce3d478c0e2ee49b033126885cea089320bde8e99a834994932"
+      url     "https://github.com/buildkite/agent/releases/download/v3.119.2/buildkite-agent-darwin-arm64-3.119.2.tar.gz"
+      sha256  "01f62efa198ed4fca7a59658973f0a74c833ef84d52d2c336a43611265a7fa57"
     else
-      url     "https://github.com/buildkite/agent/releases/download/v3.119.1/buildkite-agent-darwin-amd64-3.119.1.tar.gz"
-      sha256  "6b4d772210bbedaa700ee6dbf6c15bbe788f91c9553ab9689c882292fe9f5c73"
+      url     "https://github.com/buildkite/agent/releases/download/v3.119.2/buildkite-agent-darwin-amd64-3.119.2.tar.gz"
+      sha256  "57ae7c13f791709091e88edc6b4a87c4d4fb858acfb466137146363a6ae5bd85"
     end
   end
 

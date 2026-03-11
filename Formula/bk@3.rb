@@ -5,21 +5,21 @@
 class BkAT3 < Formula
   desc "Work with Buildkite from the command-line"
   homepage "https://github.com/buildkite/cli"
-  version "3.32.0"
+  version "3.32.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/buildkite/cli/releases/download/v3.32.0/bk_3.32.0_macOS_amd64.zip"
-      sha256 "c9d005195c074faf0504bc7b5fb4134aadd97828a19987b5188e984f3cbce221"
+      url "https://github.com/buildkite/cli/releases/download/v3.32.1/bk_3.32.1_macOS_amd64.zip"
+      sha256 "70dba9127a7df90866ad4f2c646818ae17bea3f29796637f4a8ffe9f82a8251f"
 
       def install
         bin.install "bk"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/buildkite/cli/releases/download/v3.32.0/bk_3.32.0_macOS_arm64.zip"
-      sha256 "cb8415a9790177de29a4c2623a995123b5c8a0bb2add484ff74980987f8937b9"
+      url "https://github.com/buildkite/cli/releases/download/v3.32.1/bk_3.32.1_macOS_arm64.zip"
+      sha256 "6545b4fe82998db389bf7dc7553983716343180a590d416e6e9455b130545c4a"
 
       def install
         bin.install "bk"
@@ -29,15 +29,15 @@ class BkAT3 < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/cli/releases/download/v3.32.0/bk_3.32.0_linux_amd64.tar.gz"
-      sha256 "95b6aff3bb1768dabba91b5b5224a1c171bca807628ef4ab3f297ed0d63af663"
+      url "https://github.com/buildkite/cli/releases/download/v3.32.1/bk_3.32.1_linux_amd64.tar.gz"
+      sha256 "c20332c47ced450a52f65c210b0a44e248cb53b2b10f8404f05ab67c413dbbeb"
       def install
         bin.install "bk"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/cli/releases/download/v3.32.0/bk_3.32.0_linux_arm64.tar.gz"
-      sha256 "4eb3894f049223d3ebcd0491e01cb28a759bfb2849513467cb01923c9470bff1"
+      url "https://github.com/buildkite/cli/releases/download/v3.32.1/bk_3.32.1_linux_arm64.tar.gz"
+      sha256 "4361f5fa4f5a6f086513d090a6d1e96b5b4a9e67de70079007517b83d7f815dd"
       def install
         bin.install "bk"
       end

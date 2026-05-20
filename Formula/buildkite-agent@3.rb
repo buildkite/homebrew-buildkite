@@ -1,4 +1,7 @@
-class BuildkiteAgent < Formula
+# typed: false
+# frozen_string_literal: true
+
+class BuildkiteAgentAT3 < Formula
   desc "Build runner for use with Buildkite"
   homepage "https://buildkite.com/docs/agent"
 
@@ -116,7 +119,7 @@ class BuildkiteAgent < Formula
 
   service do
     run [
-      HOMEBREW_PREFIX/"bin/buildkite-agent", "start", 
+      HOMEBREW_PREFIX/"bin/buildkite-agent", "start",
         "--config", etc/"buildkite-agent/buildkite-agent.cfg"
     ]
     working_dir HOMEBREW_PREFIX/"bin"   # Why?

@@ -1,5 +1,6 @@
 {
   "bk": "bk@3",
+  "buildkite-agent": "buildkite-agent@3",
   "buildkite-cli": "bk@3",
   "cli": "bk@3"
 }

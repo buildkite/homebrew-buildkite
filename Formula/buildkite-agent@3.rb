@@ -118,6 +118,12 @@ class BuildkiteAgentAT3 < Formula
   end
 
   service do
+    # Pin the launchd plist name to the pre-rename label so existing service
+    # registrations and tooling that reference `homebrew.mxcl.buildkite-agent`
+    # keep working after the rename to `buildkite-agent@3`. Without this, the
+    # default plist name would become `homebrew.mxcl.buildkite-agent@3`, which
+    # breaks migrations from the previous unversioned formula (see A-1338).
+    name macos: "homebrew.mxcl.buildkite-agent"
     run [
       HOMEBREW_PREFIX/"bin/buildkite-agent", "start",
         "--config", etc/"buildkite-agent/buildkite-agent.cfg"

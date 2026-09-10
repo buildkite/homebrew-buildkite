@@ -32,9 +32,9 @@ cask "buildkite-mcp-server" do
     end
   end
 
-  postflight do
-    if system_command("/usr/bin/xattr", args: ["-h"]).exit_status == 0
-      system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/buildkite-mcp-server"]
+  postflight_steps do
+    on_macos do
+      run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{staged_path}}/buildkite-mcp-server"]
     end
   end
 

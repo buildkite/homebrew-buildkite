@@ -5,40 +5,40 @@
 class Bktec < Formula
   desc "Buildkite Test Engine Client"
   homepage "https://github.com/buildkite/test-engine-client"
-  version "3.3.1"
+  version "3.4.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v3.3.1/bktec_3.3.1_darwin_amd64"
-      sha256 "273b01298c7de761f0cd56d421a8bc520f0c4f8951b164191b693c3a482b7598"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v3.4.0/bktec_3.4.0_darwin_amd64"
+      sha256 "c77be82221663aa2da21b572df8be56c7c5f45e4473acf6a20a9fdbe50a9d484"
 
       define_method(:install) do
-        bin.install "bktec_3.3.1_darwin_amd64" => "bktec"
+        bin.install "bktec_3.4.0_darwin_amd64" => "bktec"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v3.3.1/bktec_3.3.1_darwin_arm64"
-      sha256 "27bb808a524e39abe16da63bf4e5b29464b83d0e98125e77bd68b2b0eacb8c79"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v3.4.0/bktec_3.4.0_darwin_arm64"
+      sha256 "d49869af46a333849f1c02611cfc4df3ad714c87e43ded2f54013eb2a3bf8cfe"
 
       define_method(:install) do
-        bin.install "bktec_3.3.1_darwin_arm64" => "bktec"
+        bin.install "bktec_3.4.0_darwin_arm64" => "bktec"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v3.3.1/bktec_3.3.1_linux_amd64"
-      sha256 "45885aa09ae137e9d6089555f9f99a19e118f1ae09df6969404e11293e5da5c0"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v3.4.0/bktec_3.4.0_linux_amd64"
+      sha256 "ca0835d9a5084c0d254e1280db926f955f3180cfeba1c2e0383fb1c7d4f11dba"
       define_method(:install) do
-        bin.install "bktec_3.3.1_linux_amd64" => "bktec"
+        bin.install "bktec_3.4.0_linux_amd64" => "bktec"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/test-engine-client/releases/download/v3.3.1/bktec_3.3.1_linux_arm64"
-      sha256 "9200b7a9e26a3e941a22bdcb0ed171d67e98a02abae64cef585c49e702f9ea12"
+      url "https://github.com/buildkite/test-engine-client/releases/download/v3.4.0/bktec_3.4.0_linux_arm64"
+      sha256 "585efbf1e55be891a5b259312b05aaa0ed8cf4804c012a20707df2220c5ce14e"
       define_method(:install) do
-        bin.install "bktec_3.3.1_linux_arm64" => "bktec"
+        bin.install "bktec_3.4.0_linux_arm64" => "bktec"
       end
     end
   end

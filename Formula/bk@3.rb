@@ -5,21 +5,21 @@
 class BkAT3 < Formula
   desc "Work with Buildkite from the command-line"
   homepage "https://github.com/buildkite/cli"
-  version "3.66.0"
+  version "3.67.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/buildkite/cli/releases/download/v3.66.0/bk_3.66.0_macOS_amd64.zip"
-      sha256 "f334596e86e6c5e7b934b8b18f872deaa7235047b67c1470f33833cf826a9fdc"
+      url "https://github.com/buildkite/cli/releases/download/v3.67.0/bk_3.67.0_macOS_amd64.zip"
+      sha256 "edd368151d4c2596edf532786a36f59b570c042d40a2c2a6220fbdd1a2c65ff1"
 
       define_method(:install) do
         bin.install "bk"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/buildkite/cli/releases/download/v3.66.0/bk_3.66.0_macOS_arm64.zip"
-      sha256 "8554ffcfb34bf15278e122fa5fa6d85a887dc3cd10b82bd77606c3519dceb264"
+      url "https://github.com/buildkite/cli/releases/download/v3.67.0/bk_3.67.0_macOS_arm64.zip"
+      sha256 "c58a0836fcb77445152e63df1b9735efc1cc6162938318ddd835bcdb3e9aab6a"
 
       define_method(:install) do
         bin.install "bk"
@@ -29,15 +29,15 @@ class BkAT3 < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/cli/releases/download/v3.66.0/bk_3.66.0_linux_amd64.tar.gz"
-      sha256 "028eeed8db351db4dfb4714eb622ff5f9bbc16e12f65f23668e31d019e87b042"
+      url "https://github.com/buildkite/cli/releases/download/v3.67.0/bk_3.67.0_linux_amd64.tar.gz"
+      sha256 "d3bbd5501bd28b373cf9fe805f9572dea20cb2212f9f1a6027e57918cc739983"
       define_method(:install) do
         bin.install "bk"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/buildkite/cli/releases/download/v3.66.0/bk_3.66.0_linux_arm64.tar.gz"
-      sha256 "6c8141a099356d8b32235ca6be2b7109287e4608d365f3b081fb1c6f7b27e81c"
+      url "https://github.com/buildkite/cli/releases/download/v3.67.0/bk_3.67.0_linux_arm64.tar.gz"
+      sha256 "a6e1cece3cbe687519a9c76c02eb2d1af7ade7f7e65578147bf329aa6c9ab2f8"
       define_method(:install) do
         bin.install "bk"
       end
